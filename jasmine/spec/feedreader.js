@@ -95,7 +95,6 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test wil require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-         //var feeds =
 
          beforeEach(function(done){
             loadFeed(0,done);
@@ -113,19 +112,20 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
          beforeEach(function(done){
-            loadFeed(0,done);
+            loadFeed(0,function (){
+                contents = $('article.entry').find('h2')[0];
+                //opts = $('.header-title');
+                loadFeed(1,function(){
+                    done();
+                });
             });
+
+        });
       //Must finish this function and test   
          it('new feed displays', function() {
-            var contents = $('article.entry').find('h2');
-            var opts = $('ul.feed-list').find('a');
-            for (var i = 0; i < opts.length; i++) {
-                link = opts[i]
-                opts[i]('click');
-                var update = $('article.entry').find('h2');
-                expect(update).not.toMatch(contents);
-            };
+            expect($('article.entry').find('h2')[0]).not.toBe(contents);
 
          });
+
     });
 }());
