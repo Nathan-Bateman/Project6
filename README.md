@@ -1,6 +1,6 @@
  #Download this project to your machine.
 
- Then open the index file in your browser. 
+ Then open index.html in your browser. 
 
  The below tests written using the jasmine testing library
  will run automatically. They should all pass if the application
